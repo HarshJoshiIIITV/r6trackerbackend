@@ -5,14 +5,18 @@ const R6API = require('r6api.js');
 
 const app = express();
 
+const aws = require('aws-sdk');
+
+let s3 = new aws.S3({
+	email: process.env.EMAIL,
+	password: process.env.PASS,
+});
 app.use(cors());
 app.use(bodyParser.json());
 var all_info = {
 	alllevel: null,
 	allstats: null,
 	latestseason: null,
-	email: process.env.EMAIL,
-	password: process.env.PASS,
 };
 async function api_acess(username, platform) {
 	const r6api = new R6API(email, password);
