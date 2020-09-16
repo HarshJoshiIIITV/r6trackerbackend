@@ -11,9 +11,12 @@ var all_info = {
 	alllevel: null,
 	allstats: null,
 	latestseason: null,
+	email: process.env.EMAIL,
+	password: process.env.PASS,
 };
 async function api_acess(username, platform) {
-	const r6api = new R6API(process.env.EMAIL, process.env.PASS);
+	const r6api = new R6API(email, password);
+	console.log(process.env.PASS);
 	const id = await r6api.getId(platform, username).then((el) => el[0].userId);
 	const stats = await r6api.getStats(platform, id).then((el) => el[0].pvp);
 	const level = await r6api.getLevel(platform, id).then((el) => el[0].level);
