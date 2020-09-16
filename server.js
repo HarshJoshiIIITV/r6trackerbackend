@@ -5,12 +5,6 @@ const R6API = require('r6api.js');
 
 const app = express();
 
-const aws = require('aws-sdk');
-
-let s3 = new aws.S3({
-	email: process.env.EMAIL,
-	password: process.env.PASS,
-});
 app.use(cors());
 app.use(bodyParser.json());
 var all_info = {
@@ -19,8 +13,7 @@ var all_info = {
 	latestseason: null,
 };
 async function api_acess(username, platform) {
-	const r6api = new R6API(email, password);
-	console.log(process.env.PASS);
+	const r6api = new R6API('soxidew592@kespear.com', 'Harshj@1998');
 	const id = await r6api.getId(platform, username).then((el) => el[0].userId);
 	const stats = await r6api.getStats(platform, id).then((el) => el[0].pvp);
 	const level = await r6api.getLevel(platform, id).then((el) => el[0].level);
